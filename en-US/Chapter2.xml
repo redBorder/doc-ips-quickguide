@@ -7,26 +7,328 @@
 <!ENTITY HOLDER "Eneo Tecnología S.L. |">
 ]>
 <chapter>
-	<title>Registering the IPS/ IDS sensor in redborder Live</title>	
+	<title>Registering the IPS/ IDS sensor in redborder</title>	
 	<section>
-		<title>Registering the sensor in redborder LIve</title>
-		<para>Once you have registered the sensors in the Manager you can check it from the redborder platform. To verify this, 
-		you can access Sensors in the web interface to see if the last check in was satisfactory:</para> 
+		<title>Requirements</title>
+		<para>redBorder is a software which has some minimum requirements in order to function correctly. 
+		The minimum essential elements required for installation as well as those 
+		recommended for correct performance are referenced at every SNORT instance being executed. They are shown in the following chart:</para> 
+		
+		<note>
+			<title>Installation requirements</title>
+			<para><emphasis role="bold">Minimum per instance</emphasis></para>
+			<itemizedlist mark="bullet">
+				<listitem>
+					<para>RAM 2GB</para>
+				</listitem>
+				<listitem>
+					<para>Processor: 1 core</para>
+				</listitem>
+			</itemizedlist>	
+			<para><emphasis role="bold">Recommended per instance</emphasis> <footnote><para>For example, if we want four SNORT instances in the recommended configuration, 
+			we need a machine with 16 GB and four cores.</para></footnote></para>
+			<itemizedlist mark="bullet">
+				<listitem>
+					<para>RAM 4GB</para>
+				</listitem>
+				<listitem>
+					<para>Processor: 1 core</para>
+				</listitem>
+			</itemizedlist>		
+		</note>
+		
+	</section>
+	<section>
+		<title>Installing the sensor in the Manager</title>
+		<para>Once we have booted the redborder ISO, we will see the installation menu. To perform the installation, select the option: <literal>Install Community IPS Sensor:</literal></para>
+		
 		<mediaobject>
 			<imageobject>
 				<imagedata scalefit="1" align="center" width="450" fileref="images/ch02_img001.png"/>
             </imageobject>
 			<caption>
-				<para>Sensors interface: checking sensors registration</para>
+				<para>ISO Installation menu: Install Community IPS Sensor </para>
 			</caption>
         </mediaobject>
         
+        <para>Once in the installation process, the user only needs to confirm the installation destination and root password. 
+        redborder is prepared for unattended installations and so <emphasis role="bold">we should be especially careful with the time we have to respond to 
+        these three questions if we wish to modify the default options:</emphasis></para>
+        
+       <mediaobject>
+			<imageobject>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/ch02_img002.png"/>
+            </imageobject>
+			<caption>
+				<para>Select the disk in which you want to install the sensor</para>
+			</caption>
+        </mediaobject>
+        
+        <para>Once this page has been confirmed, the installation will carry out all of the necessary processes to prepare the system for configuration.</para>
+        <para>By default, the root password will be <emphasis>redborder.</emphasis></para>
+	</section>
+	
+	<section>
+		<title>Basic Configuration</title>
+		<para>Upon completing the installation process, we have two configuration options depending on whether or not there is a DHCP server.</para>
+		<orderedlist numeration="arabic">
+			<listitem>
+				<para><emphasis>Dynamic IP (DHCP):</emphasis> in this case, redborder will have acquired an IP in its network interface. </para>
+			</listitem>
+			<listitem>
+				<para><emphasis>Static IP:</emphasis> in this case redborder will not have any IP assigned. </para>
+			</listitem>
+		</orderedlist>
+		<para>In both cases we will have to access the system in order to configure and register the sensor in the manager. 
+		We will access with the root user and password that was selected during installation.</para>
+		
+		 <mediaobject>
+			<imageobject>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/ch02_img003.png"/>
+            </imageobject>
+			<caption>
+				<para>Introducing user/ password</para>
+			</caption>
+        </mediaobject>
+        
+        <para>Once inside the system we will start the configuration manager. To do this, we will execute:</para>
+        <para><screen>
+			[root@rbmanager ~]# rb_sysconf
+        </screen>
+        </para>
+        <para>A menu with different options will appear:</para>
+        
+        <mediaobject>
+			<imageobject>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/ch02_img004.png"/>
+            </imageobject>
+			<caption>
+				<para>redborder configuration menu</para>
+			</caption>
+        </mediaobject>
+        
+        <para>Select option number 2 for Network configuration:</para>
+        
+        <mediaobject>
+			<imageobject>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/ch02_img005.png"/>
+            </imageobject>
+			<caption>
+				<para>redborder configuration menu</para>
+			</caption>
+        </mediaobject>
+        
+        <para>Select option number 1 for Management Network configuration:</para>
+        
+         <mediaobject>
+			<imageobject>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/ch02_img006.png"/>
+            </imageobject>
+			<caption>
+				<para>redborder Network configuration menu</para>
+			</caption>
+        </mediaobject>
+        
+        <para>Select option  <keycap>n</keycap> to create a new bonding. We’ll configure the management IP in the first bonding (bond0). 
+		We type "0" to create bond0.</para>
+		
+		 <mediaobject>
+			<imageobject>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/ch02_img007.png"/>
+            </imageobject>
+			<caption>
+				<para>Bond creation</para>
+			</caption>
+        </mediaobject>
+        
+        <para>Now we choose the first interface (port) for bond0. The second interface in optional:</para>
+        
+        <mediaobject>
+			<imageobject>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/ch02_img008.png"/>
+            </imageobject>
+			<caption>
+				<para>Select the interface for bond0</para>
+			</caption>
+        </mediaobject>
+        
+        <para>In the next steps we set the IP address, netmask and defaullt gateway. Remember that the sensor requires visibility with the manager.
+        The option <literal>Insert a route for this bonding</literal> defines a static route. If you are going to use the default gateway, select <keycap>n</keycap> for this option.</para>
+        
+        <mediaobject>
+			<imageobject>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/ch02_img009.png"/>
+            </imageobject>
+			<caption>
+				<para>Set IP Address, netmask and gateway</para>
+			</caption>
+        </mediaobject>
+        
+        <para>To finish the configuration of the management IP, we need to apply the changes. Then we must return to the previous menu (Network configuration menu) and select option <keycap>a</keycap></para>
+        
+         <mediaobject>
+			<imageobject>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/ch02_img010.png"/>
+            </imageobject>
+			<caption>
+				<para>Select "apply" to save the changes</para>
+			</caption>
+        </mediaobject>
+        
+        <para>When the above processes finish, the management interface will be configured.</para>
+        
+        <section>
+			<title>Network interfaces</title>
+			<para>In this section we must keep in mind whether we want an <emphasis role="bold">Intrusion Detection System (IDS) or an Intrusion Prevention System (IPS).</emphasis> 
+			For the former, we only need a management network interface and another which we will use to analyze traffic. 
+			For the latter, in addition to the management interface, we will need <emphasis role="bold">two or more network interfaces.</emphasis></para>
+			<para>In this guide we will assume that there are two network interfaces in our system. </para>
+			<orderedlist numeration="arabic">
+				<listitem>
+					<para><emphasis>First interface:</emphasis> We have already configured the first in the previous steps and this is the interface that we will use to communicate with the sensor. </para>
+				</listitem>
+				<listitem>
+					<para><emphasis>Second interface:</emphasis>With the second network interface we are going to create a segment with a listening 
+					port to analyze the traffic that flows through the said interface.  Likewise, we need to send the desired traffic to this second interface. 
+					One option is to use a network listening device (Network TAP) which will be configured to resend traffic through the interfaces where it has not received traffic (see image). 
+					A diagram is included where the configuration can be seen:</para>
+				</listitem>
+			</orderedlist>
+			
+			<mediaobject>
+				<imageobject>
+					<imagedata scalefit="1" align="center" width="450" fileref="images/ch02_img011.png"/>
+				</imageobject>
+				<caption>
+					<para>IDS (SPAN mode)</para>
+				</caption>
+			</mediaobject>
+			
+        </section>
+        
+        <section>
+			<title>Segment creation</title>
+			<para>Now select option number <literal>3 for Segment settings.</literal> If you have a segment with bypass support, this capability will be auto-configured by default when detected.
+			 In our case we are going to assume that we don't have bypass support. So, you must select the option <keycap>n (new segment)</keycap> in order to configure a segment and follow the wizard:</para>
+			 <orderedlist numeration="arabic">
+				 <listitem>
+					 <para>Insert segment number (0-1) [0]: Press <keycap>ENTER </keycap> to select 0.</para>
+				 </listitem>
+				 <listitem>
+					 <para>Insert segment first port [1]: Press <keycap>ENTER </keycap> to select 1.</para>
+				 </listitem>
+				 <listitem>
+					 <para>Assign a second port to the segment (Y/n): Select N and press <keycap>ENTER </keycap>.</para>
+				 </listitem>
+			 </orderedlist>
+			 
+			 <mediaobject>
+				<imageobject>
+					<imagedata scalefit="1" align="center" width="450" fileref="images/ch02_img011.png"/>
+				</imageobject>
+				<caption>
+					<para>Assigning ports to each segment</para>
+				</caption>
+			</mediaobject>
+			
+			<para>After creating the segment, you must apply the changes. Lastly we can change, in Network Configuration, the DNS configuration and the desired domain. 
+			To do this, we select option <literal>2 -  DNS and domain settings.</literal> We must apply the changes again.</para>
+			
+			<mediaobject>
+				<imageobject>
+					<imagedata scalefit="1" align="center" width="450" fileref="images/ch02_img013.png"/>
+				</imageobject>
+				<caption>
+					<para>Adding DNS and domain settings</para>
+				</caption>
+			</mediaobject>
+        </section>   
+	</section>
+	
+	<section>
+		<title>Registering the IDS Sensor in the Manager</title>
+		<para>Now we are going to register the sensor, configured previously, in the Manager. To do this, we must go to the main menu and select option <literal>1 - System configuration:</literal></para>
+		
+		<mediaobject>
+			<imageobject>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/ch02_img014.png"/>
+			</imageobject>
+			<caption>
+				<para>Registering the IDS Sensor in the Manager</para>
+			</caption>
+		</mediaobject>
+		
+		<orderedlist numeration="arabic">
+			<listitem>
+				<para>Option 1: allows us to create a host name for the IDS/IPS sensor.</para>
+			</listitem>
+			<listitem>
+				<para>Option 2: allows us to indicate the local time of the IDS/IPS sensor.</para>
+			</listitem>
+			<listitem>
+				<para>Option 3: we must insert the domain or IP that the Manager has in its management interface.</para>
+			</listitem>
+		</orderedlist>
+		
+		<mediaobject>
+			<imageobject>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/ch02_img015.png"/>
+			</imageobject>
+			<caption>
+				<para>Insert IP Address or domain name</para>
+			</caption>
+		</mediaobject>
+		
+		<para>Lastly, we must select option <literal>4 Register rB Sensor/ manager.</literal> 
+		This wizard will ask us for the username and password to access the web interface of the Manager (by default, the username is admin and the password is <emphasis>redborder)</emphasis>.</para>
+		
+		<mediaobject>
+			<imageobject>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/ch02_img016.png"/>
+			</imageobject>
+			<caption>
+				<para>Register rB sensor/ manager</para>
+			</caption>
+		</mediaobject>
+		
+		<para>If we have followed these instructions, the sensor will be registered:</para>
+		
+		<mediaobject>
+			<imageobject>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/ch02_img017.png"/>
+			</imageobject>
+			<caption>
+				<para>Register rB sensor/ manager</para>
+			</caption>
+		</mediaobject>
+		
+		<para>Likewise, it will appear in the web interface of our Manager as configured. To verify this, 
+		you can access Sensors in the web interface to see if the last check in was satisfactory:</para> 
+		
+		<mediaobject>
+			<imageobject>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/ch02_img018.png"/>
+            </imageobject>
+			<caption>
+				<para>Sensors interface: checking sensors registration</para>
+			</caption>
+        </mediaobject>
+		
+		
+		
+	</section>
+	
+	
+	
+	
+	<section>
+		<title>Registering the sensor in redborder Live</title>    
         <para>In order to register the sensor in redborder Live, we must have a <emphasis role="bold">redborder account.</emphasis></para>
         <para>First, sign up in redborder Live, we must access: <ulink url="https://www.redborder.com/"></ulink> Click on <literal>Try redborder</literal>, in the upper right of the screen.</para>
         
         <mediaobject>
 			<imageobject>
-				<imagedata scalefit="1" align="center" width="450" fileref="images/ch02_img002.png"/>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/ch02_img019.png"/>
             </imageobject>
 			<caption>
 				<para>Sign up in redborder Live </para>
@@ -37,7 +339,7 @@
         
         <mediaobject>
 			<imageobject>
-				<imagedata scalefit="1" align="center" width="450" fileref="images/ch02_img003.png"/>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/ch02_img020.png"/>
             </imageobject>
 			<caption>
 				<para>Fill the form with your personal data</para>
@@ -49,7 +351,7 @@
         
         <mediaobject>
 			<imageobject>
-				<imagedata scalefit="1" align="center" width="450" fileref="images/ch02_img004.png"/>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/ch02_img021.png"/>
             </imageobject>
 			<caption>
 				<para>redborder Live login page</para>
@@ -63,7 +365,7 @@
         
         <mediaobject>
 			<imageobject>
-				<imagedata scalefit="1" align="center" width="450" fileref="images/ch02_img005.png"/>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/ch02_img022.png"/>
             </imageobject>
 			<caption>
 				<para>redborder configuration menu</para>
@@ -74,7 +376,7 @@
         
         <mediaobject>
 			<imageobject>
-				<imagedata scalefit="1" align="center" width="450" fileref="images/ch02_img005.png"/>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/ch02_img023.png"/>
             </imageobject>
 			<caption>
 				<para>Select option 1: System configuration</para>
@@ -86,7 +388,7 @@
         
         <mediaobject>
 			<imageobject>
-				<imagedata scalefit="1" align="center" width="450" fileref="images/ch02_img006.png"/>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/ch02_img024.png"/>
             </imageobject>
 			<caption>
 				<para>Sensor UUID</para>
@@ -97,7 +399,7 @@
         
         <mediaobject>
 			<imageobject>
-				<imagedata scalefit="1" align="center" width="450" fileref="images/ch02_img007.png"/>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/ch02_img025.png"/>
             </imageobject>
 			<caption>
 				<para>Claim sensor</para>
@@ -108,7 +410,7 @@
         
         <mediaobject>
 			<imageobject>
-				<imagedata scalefit="1" align="center" width="450" fileref="images/ch02_img008.png"/>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/ch02_img026.png"/>
             </imageobject>
 			<caption>
 				<para>Enter the name and UUID of your sensor</para>
@@ -120,7 +422,7 @@
          
          <mediaobject>
 			<imageobject>
-				<imagedata scalefit="1" align="center" width="450" fileref="images/ch02_img009.png"/>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/ch02_img027.png"/>
             </imageobject>
 			<caption>
 				<para>Sensors interface: claimed sensor</para>
@@ -129,7 +431,7 @@
         
         <mediaobject>
 			<imageobject>
-				<imagedata scalefit="1" align="center" width="450" fileref="images/ch02_img010.png"/>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/ch02_img028.png"/>
             </imageobject>
 			<caption>
 				<para>Sensor registerd and claimed</para>
@@ -144,7 +446,7 @@
 		
 		 <mediaobject>
 			<imageobject>
-				<imagedata scalefit="1" align="center" width="450" fileref="images/ch02_img011.png"/>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/ch02_img029.png"/>
             </imageobject>
 			<caption>
 				<para>Edit sensor</para>
@@ -156,7 +458,7 @@
         
          <mediaobject>
 			<imageobject>
-				<imagedata scalefit="1" align="center" width="450" fileref="images/ch02_img011.png"/>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/ch02_img030.png"/>
             </imageobject>
 			<caption>
 				<para>Edit IPS/ IDS settings</para>
