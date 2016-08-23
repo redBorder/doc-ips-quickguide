@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+<!ENTITY % BOOK_ENTITIES SYSTEM "manual.ent">
+<!ENTITY PRODUCT "Documentation">
+<!ENTITY BOOKID "manual">
+<!ENTITY YEAR "2016">
+<!ENTITY HOLDER "Eneo Tecnología S.L. |">
+]>
+<chapter>
+	<title>Installing the redborder Manager</title>	
+	<section>
+		<title>Requirements</title>
+		<para>redBorder is a software which has some minimum requirements in order to function correctly. 
+		The minimum essential elements required for installation as well as those recommended for correct performance are shown in the following chart:</para> 
+		<note>
+			<title>Installation requirements</title>
+			<para><emphasis role="bold">Minimum requirements</emphasis></para>
+			<para>RAM 16GB</para>
+			<para>Processor: 2 cores</para>
+			<para>HD 24GB</para>
+			<para><emphasis role="bold">Recommended requirements</emphasis></para>
+			<para>RAM 32GB</para>
+			<para>Processor: 4 cores</para>
+			<para>HD 100GB</para>
+		</note>
+    </section>
+    
+    <section>
+		<title>Downloading the ISO</title>
+		<para>In order to download the ISO image, we <emphasis role="bold">must be registered.</emphasis> Once we are logged in to the redborder web, we must go to 
+		<emphasis>Community -> Downloads.</emphasis></para>
+		<para>On this page we will find all of the redborder editions along with their corresponding specifications and characteristics.</para>
+		<para>To download the Community edition, click on DOWNLOAD in the Community section.</para>
+		<mediaobject>
+			<imageobject>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/ch01_img001.png"/>
+            </imageobject>
+			<caption>
+				<para>Downloading the ISO</para>
+			</caption>
+        </mediaobject>
+     </section>
+      
+	 <section>
+		<title>Burning the ISO Image</title>
+		<para>The ISO image is prepared to perform the boot from a DVD reader, USB device or as an ISO file for a virtual machine.
+		In order to burn the ISO image from a Linux system to a USB device, the following command needs to be used if the USB device is mapped in <literal>/dev/sdd:</literal></para>
+		<para><screen>[root@machine ~]# dd if=redBorder-3.1.68-1-x86_64-6.5-community.iso of=/dev/sdd bs=10M</screen></para>
+	</section>
+		
+	<section>
+		<title>Installing the ISO</title>
+		<para>Once we have booted the redborder ISO, we will see the installation menu. To perform the installation, select the option <emphasis>Install Community Manager:</emphasis></para>
+		<mediaobject>
+			<imageobject>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/ch01_img002.png"/>
+            </imageobject>
+			<caption>
+				<para>Installing the ISO</para>
+			</caption>
+        </mediaobject>
+        <para>Once in the installation process, the user only needs to confirm the installation destination and root password. 
+        redborder is prepared for unattended installations and so we should be especially careful with the time 
+        we have to respond to these three questions if we wish to modify the default options:</para>
+		<mediaobject>
+			<imageobject>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/ch01_img003.png"/>
+            </imageobject>
+			<caption>
+				<para>Selecting the disk to install on</para>
+			</caption>
+        </mediaobject>
+        <para>Once this page has been confirmed, the installation will carry out all of the necessary processes to prepare the system for configuration.
+		By default, <emphasis role="bold">the root password will be redborder.</emphasis></para>
+	</section>
+	
+	<section>
+		<title>Basic Configuration</title>
+		<para>Upon completing the installation process, we have two configuration options depending on whether or not there is a DHCP server.</para>
+		<orderedlist numeration="arabic">
+			<listitem>
+				<para><emphasis role="bold">Dynamic IP (DHCP):</emphasis> in this case, redborder will have acquired an IP in its 
+				network interface and will have auto-configured in order to operate in said address. </para>
+			</listitem>
+			<listitem>
+				<para><emphasis role="bold">Static IP:</emphasis> in this case redborder will not have configured and we will have to access the system in order to perform the configuration.
+				 To gain access we will use the <emphasis>root user</emphasis> and the password we selected during the installation.</para>
+			</listitem>
+		</orderedlist>
+		<mediaobject>
+			<imageobject>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/ch01_img004.png"/>
+            </imageobject>
+			<caption>
+				<para>Choosing the IP for the Manager installation</para>
+			</caption>
+        </mediaobject>
+        <para>Once inside the system, we will start the configuration manager. To do this we will execute:</para>
+        <para><command>[root@rbmanager ~]# rb_sysconf</command></para>
+        <para>In the configuration we have several options:</para>
+        <mediaobject>
+			<imageobject>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/ch01_img005.png"/>
+            </imageobject>
+			<caption>
+				<para>redborder configuration menu</para>
+			</caption>
+        </mediaobject>
+        <para>To start the configuration we begin with <literal>option 1 - System configuration:</literal></para>
+        <mediaobject>
+			<imageobject>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/ch01_img006.png"/>
+            </imageobject>
+			<caption>
+				<para>System Configuration</para>
+			</caption>
+        </mediaobject>
+        <itemizedlist mark="bullet">
+			<listitem>
+				<para><emphasis>Option 1 - Hostname:</emphasis> we must enter the host name of the machine where redborder has been installed.</para>
+			</listitem>
+			<listitem>
+				<para><emphasis>Option 2 - Set local time:</emphasis> allows us to indicate a local time for the system.</para>
+			</listitem>
+			<listitem>
+				<para><emphasis>Options 3 y 4:</emphasis>  let us configure parameters not included in this Quick Installation Guide.</para>
+			</listitem>
+        </itemizedlist>
+        <para>Returning to the main menu, in <literal>option 2 - Network configuration </literal>we will have to configure everything related to the network environment:</para>
+        <mediaobject>
+		 <imageobject>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/ch01_img007.png"/>
+            </imageobject>
+			<caption>
+				<para>Network Configuration</para>
+			</caption>
+        </mediaobject>
+        <para>In <literal>option 1 - Management Network configuration</literal>we will have the option of creating a link.</para>
+        <mediaobject>
+		 <imageobject>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/ch01_img008.png"/>
+            </imageobject>
+			<caption>
+				<para>Management Network Configuration</para>
+			</caption>
+        </mediaobject>
+        <para>When we select the option <keycap>n</keycap> we are asked for:</para>
+        <itemizedlist mark="opencircle">
+			<listitem>
+				<para><emphasis>Insert bonding number [0]:</emphasis> The default value is "0" and indicates the link index (at redBorder we use redundant links called bonding).</para>
+			</listitem>
+			<listitem>
+				<para><emphasis>Insert bonding number [0]:</emphasis>  The default value is "0" and allows us to indicate the network port index to use in the management link.</para>
+			</listitem>
+			<listitem>
+				<para><emphasis>Insert second port (y/N):</emphasis> If only one port is needed for management, use the default value "N".</para>
+			</listitem>
+			<listitem>
+				<para><emphasis>Insert management IP address:</emphasis>  We will enter the IP that we want to assign to redborder </para>
+			</listitem>
+			<listitem>
+				<para><emphasis> Insert management Netmask:</emphasis> We will enter the network mask that we want to assign to redborder.</para>
+			</listitem>
+			<listitem>
+				<para><emphasis>Insert default gateway for this management interface (Y/n):</emphasis> Indicates whether or not we want to assign a link port to redborder. Por defecto indicaremos Y.</para>
+			</listitem>
+			<listitem>
+				<para><emphasis> Insert default gateway []:</emphasis> We will enter the gateway IP address.</para>
+			</listitem>
+			<listitem>
+				<para><emphasis>Insert a route for this bonding (y/N):</emphasis>  Indicates whether or not we want to indicate a route for the link created. By default we will indicate "N".</para>
+			</listitem>
+        </itemizedlist>
+        <para>Once the link is created, we return to the <literal>Management Network configuration menu</literal> and select <literal>option 2 - DNS and domain settings</literal>
+         in this option we will be asked to:</para>
+         <itemizedlist mark="opencircle">
+			 <listitem>
+				 <para><emphasis>Insert Domain [redborder.cluster]: </emphasis>we are asked to enter the domain which redborder will be integrating. </para>
+			 </listitem>
+			 <listitem>
+				 <para><emphasis>Insert DNS Primary: </emphasis> we are asked for the DNS server to be used.</para>
+			 </listitem>
+			 <listitem>
+				 <para><emphasis>Insert DNS Secondary (optional):</emphasis> we are asked for the secondary DNS server to be used. A secondary DNS server is not necessary by default. </para>
+			 </listitem>
+         </itemizedlist>
+         <para>Once the previous steps have been completed, we must apply the configuration with the option <keycap>a - apply. </keycap></para>
+         <note>
+			 <title>Note</title>
+			 <para>At this time we will see that several operations are executed. Please be patient because this process may be lengthy depending on the machine's hardware.</para>
+         </note>
+         <para>Returning to the main menu, we have <literal>option 3 -  Passwords.</literal> Within this option we can modify the different passwords used by default for the different users. 
+         Remember that the default password is redborder.</para>
+         <mediaobject>
+			<imageobject>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/ch01_img009.png"/>
+            </imageobject>
+			<caption>
+				<para>Passwords</para>
+			</caption>
+        </mediaobject>
+        <para>Lastly, we have <literal>option 4 - Backup system </literal> which is outside of the scope of this Quick Installation Guide.</para>
+	</section>
+	
+	<section>
+		<title>Using redBorder</title>
+		<para>Once we have carried out all of the previously described configuration steps, we will be able to access the redborder web interface by entering the IP address of the machine where 
+		redborder has been installed in a web browser using the admin user and the administration password, which will either be the default password (redborder) 
+		or another entered previously in the configuration menu.</para>
+		<mediaobject>
+			<imageobject>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/ch01_img010.png"/>
+            </imageobject>
+			<caption>
+				<para>redborder web platform</para>
+			</caption>
+        </mediaobject>
+	</section>
+	
+	<section>
+		<title>Basic Troubleshooting</title>
+		<para>To verify the correct functioning of redborder, we can access the system via ssh using root user and execute the command: </para>
+		<para><screen>
+		[root@rbmanager ~]# rb_get_services.sh all
+-----------------------------------------------
+Service                 rbmanager         
+-----------------------------------------------
+chef-client:            running           
+druid_coordinator:      running           
+druid_realtime:         running           
+druid_historical:       running           
+druid_broker:           running           
+kafka:                  running           
+zookeeper:              running           
+rb-monitor:             running           
+rb-webui:               running           
+rb-workers:             running           
+memcached:              running           
+erchef:                 running           
+chef-solr:              running           
+chef-expander:          running           
+chef-server-webui:      not running       
+bookshelf:              running           
+rabbitmq:               running           
+postgresql:             running           
+nginx:                  running           
+nprobe:                 running           
+rb-sociald:             running           
+aerospike:              not running       
+--------------------------------------------------
+Total:                  20                
+--------------------------------------------------
+Running: 20  /  Stopped: 2  /  Errors: 0  /  Unknown: 0	
+		</screen>
+		</para>
+		<para>This command should show services in "running" status in green, and services in "not running" status in orange.</para>
+		<para>If at any time any of the two statuses are shown (running or not running) in red, it means that the service is in the opposite state of that shown. 
+		Example: if we see that a status appears as "running" in red, it indicates that the service is running but should be turned off. The same applies to the reverse case, if we see 
+		a "not running" status in red, it indicates that the service is not running but in fact should be.</para>
+	</section>
+		
+</chapter>
