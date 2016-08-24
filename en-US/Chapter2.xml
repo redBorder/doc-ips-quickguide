@@ -167,7 +167,7 @@
         
          <mediaobject>
 			<imageobject>
-				<imagedata scalefit="1" align="center" width="450" fileref="images/ch02_img010.png"/>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/ch02_img012.png"/>
             </imageobject>
 			<caption>
 				<para>Select "apply" to save the changes</para>
@@ -320,7 +320,8 @@
 	<section>
 		<title>Registering the sensor in redborder Live</title>    
         <para>In order to register the sensor in redborder Live, we must have a <emphasis role="bold">redborder account.</emphasis></para>
-        <para>First, sign up in redborder Live, we must access: <ulink url="https://www.redborder.com/"></ulink> Click on <literal>Try redborder</literal>, in the upper right of the screen.</para>
+        <para>First, sign up in redborder Live, we must access: <ulink url="https://www.redborder.com/"></ulink></para>
+        <para>Click on <literal>Try redborder</literal>, in the upper right of the screen.</para>
         
         <mediaobject>
 			<imageobject>
