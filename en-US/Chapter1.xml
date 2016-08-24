@@ -112,7 +112,7 @@
 			</caption>
         </mediaobject>
         <para>Once inside the system, we will start the configuration manager. To do this we will execute:</para>
-        <para><cscreen>[root@rbmanager ~]# rb_sysconf</screen></para>
+        <para><screen>[root@rbmanager ~]# rb_sysconf</screen></para>
         <para>In the configuration we have several options:</para>
         <mediaobject>
 			<imageobject>
@@ -133,13 +133,13 @@
         </mediaobject>
         <itemizedlist mark="bullet">
 			<listitem>
-				<para><emphasis>Option 1 - Hostname:</emphasis> we must enter the host name of the machine where redborder has been installed.</para>
+				<para><literal>Option 1 - Hostname:</literal> we must enter the host name of the machine where redborder has been installed.</para>
 			</listitem>
 			<listitem>
-				<para><emphasis>Option 2 - Set local time:</emphasis> allows us to indicate a local time for the system.</para>
+				<para><literal>Option 2 - Set local time:</literal> allows us to indicate a local time for the system.</para>
 			</listitem>
 			<listitem>
-				<para><emphasis>Options 3 y 4:</emphasis>  let us configure parameters not included in this Quick Installation Guide.</para>
+				<para><literal>Optio ns 3 y 4:</literal>  let us configure parameters not included in this Quick Installation Guide.</para>
 			</listitem>
         </itemizedlist>
         <para>Returning to the main menu, in option <literal>2 - Network configuration </literal>we will have to configure everything related to the network environment:</para>
@@ -163,41 +163,41 @@
         <para>When we select the option <keycap>n</keycap> we are asked for:</para>
         <itemizedlist mark="opencircle">
 			<listitem>
-				<para><emphasis>Insert bonding number [0]:</emphasis> The default value is "0" and indicates the link index (at redBorder we use redundant links called bonding).</para>
+				<para><literal>Insert bonding number [0]:</literal> The default value is "0" and indicates the link index (at redBorder we use redundant links called bonding).</para>
 			</listitem>
 			<listitem>
-				<para><emphasis>Insert bonding number [0]:</emphasis>  The default value is "0" and allows us to indicate the network port index to use in the management link.</para>
+				<para><literal>Insert bonding number [0]:</literal>  The default value is "0" and allows us to indicate the network port index to use in the management link.</para>
 			</listitem>
 			<listitem>
-				<para><emphasis>Insert second port (y/N):</emphasis> If only one port is needed for management, use the default value "N".</para>
+				<para><literal>Insert second port (y/N):</literal> If only one port is needed for management, use the default value "N".</para>
 			</listitem>
 			<listitem>
-				<para><emphasis>Insert management IP address:</emphasis>  We will enter the IP that we want to assign to redborder </para>
+				<para><literal>Insert management IP address:</literal>  We will enter the IP that we want to assign to redborder </para>
 			</listitem>
 			<listitem>
-				<para><emphasis> Insert management Netmask:</emphasis> We will enter the network mask that we want to assign to redborder.</para>
+				<para><literal> Insert management Netmask:</literal> We will enter the network mask that we want to assign to redborder.</para>
 			</listitem>
 			<listitem>
-				<para><emphasis>Insert default gateway for this management interface (Y/n):</emphasis> Indicates whether or not we want to assign a link port to redborder. Por defecto indicaremos Y.</para>
+				<para><literal>Insert default gateway for this management interface (Y/n):</literal> Indicates whether or not we want to assign a link port to redborder. Por defecto indicaremos Y.</para>
 			</listitem>
 			<listitem>
-				<para><emphasis> Insert default gateway []:</emphasis> We will enter the gateway IP address.</para>
+				<para><literal> Insert default gateway []:</literal> We will enter the gateway IP address.</para>
 			</listitem>
 			<listitem>
-				<para><emphasis>Insert a route for this bonding (y/N):</emphasis>  Indicates whether or not we want to indicate a route for the link created. By default we will indicate "N".</para>
+				<para><literal>Insert a route for this bonding (y/N):</literal>  Indicates whether or not we want to indicate a route for the link created. By default we will indicate "N".</para>
 			</listitem>
         </itemizedlist>
         <para>Once the link is created, we return to the <literal>Management Network configuration menu</literal> and select option <literal>2 - DNS and domain settings</literal>
          in this option we will be asked to:</para>
          <itemizedlist mark="opencircle">
 			 <listitem>
-				 <para><emphasis>Insert Domain [redborder.cluster]: </emphasis>we are asked to enter the domain which redborder will be integrating. </para>
+				 <para><literal>Insert Domain [redborder.cluster]: </literal>we are asked to enter the domain which redborder will be integrating. </para>
 			 </listitem>
 			 <listitem>
-				 <para><emphasis>Insert DNS Primary: </emphasis> we are asked for the DNS server to be used.</para>
+				 <para><literal>Insert DNS Primary: </literal> we are asked for the DNS server to be used.</para>
 			 </listitem>
 			 <listitem>
-				 <para><emphasis>Insert DNS Secondary (optional):</emphasis> we are asked for the secondary DNS server to be used. A secondary DNS server is not necessary by default. </para>
+				 <para><literal>Insert DNS Secondary (optional):</literal> we are asked for the secondary DNS server to be used. A secondary DNS server is not necessary by default. </para>
 			 </listitem>
          </itemizedlist>
          <para>Once the previous steps have been completed, we must apply the configuration with the option <keycap>a - apply. </keycap></para>
@@ -220,7 +220,7 @@
 	
 	<section>
 		<title>Using redBorder</title>
-		<para>Once we have carried out all of the previously described configuration steps,<emphasis role="bold">we will be able to access the redborder web interface by entering the IP address of the machine</emphasis>
+		<para>Once we have carried out all of the previously described configuration steps,<emphasis role="bold"> we will be able to access the redborder web interface by entering the IP address of the machine</emphasis>
 		where redborder has been installed in a web browser using the admin user and the administration password, which will either be the default password (redborder) 
 		or another entered previously in the configuration menu.</para>
 		<mediaobject>

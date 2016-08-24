@@ -40,7 +40,7 @@
 	</section>
 	<section>
 		<title>Installing the sensor in the Manager</title>
-		<para>Once we have booted the redborder ISO, we will see the installation menu. To perform the installation, select the option: <literal>Install Community IPS Sensor:</literal></para>
+		<para>Once we have booted the redborder ISO, we will see the installation menu. To perform the installation, select the option: <literal>Install Community IPS Sensor</literal></para>
 		
 		<mediaobject>
 			<imageobject>
@@ -65,7 +65,7 @@
         </mediaobject>
         
         <para>Once this page has been confirmed, the installation will carry out all of the necessary processes to prepare the system for configuration.</para>
-        <para>By default, the root password will be <emphasis>redborder.</emphasis></para>
+        <para>By default, the root password will be <emphasis role="bold">redborder.</emphasis></para>
 	</section>
 	
 	<section>
@@ -73,10 +73,10 @@
 		<para>Upon completing the installation process, we have two configuration options depending on whether or not there is a DHCP server.</para>
 		<orderedlist numeration="arabic">
 			<listitem>
-				<para><emphasis>Dynamic IP (DHCP):</emphasis> in this case, redborder will have acquired an IP in its network interface. </para>
+				<para><literal>Dynamic IP (DHCP):</literal> in this case, redborder will have acquired an IP in its network interface. </para>
 			</listitem>
 			<listitem>
-				<para><emphasis>Static IP:</emphasis> in this case redborder will not have any IP assigned. </para>
+				<para><literal>Static IP:</literal> in this case redborder will not have any IP assigned. </para>
 			</listitem>
 		</orderedlist>
 		<para>In both cases we will have to access the system in order to configure and register the sensor in the manager. 
@@ -92,10 +92,9 @@
         </mediaobject>
         
         <para>Once inside the system we will start the configuration manager. To do this, we will execute:</para>
-        <para><screen>
-			[root@rbmanager ~]# rb_sysconf
-        </screen>
-        </para>
+        
+        <para><screen>[root@rbmanager ~]# rb_sysconf</screen></para>
+       
         <para>A menu with different options will appear:</para>
         
         <mediaobject>
@@ -107,7 +106,7 @@
 			</caption>
         </mediaobject>
         
-        <para>Select option number 2 for Network configuration:</para>
+        <para>Select option number <keycap>2</keycap> for Network configuration:</para>
         
         <mediaobject>
 			<imageobject>
@@ -118,7 +117,7 @@
 			</caption>
         </mediaobject>
         
-        <para>Select option number 1 for Management Network configuration:</para>
+        <para>Select option number <keycap>1</keycap> for Management Network configuration:</para>
         
          <mediaobject>
 			<imageobject>
@@ -129,7 +128,7 @@
 			</caption>
         </mediaobject>
         
-        <para>Select option  <keycap>n</keycap> to create a new bonding. We’ll configure the management IP in the first bonding (bond0). 
+        <para>Select option <keycap>n</keycap> to create a new bonding. We’ll configure the management IP in the first bonding (bond0). 
 		We type "0" to create bond0.</para>
 		
 		 <mediaobject>
@@ -164,7 +163,7 @@
 			</caption>
         </mediaobject>
         
-        <para>To finish the configuration of the management IP, we need to apply the changes. Then we must return to the previous menu (Network configuration menu) and select option <keycap>a</keycap></para>
+        <para>To finish the configuration of the management IP, we need to apply the changes. Then we must return to the previous menu (Network configuration menu) and select option <keycap>a.</keycap></para>
         
          <mediaobject>
 			<imageobject>
@@ -185,19 +184,21 @@
 			<para>In this guide we will assume that there are two network interfaces in our system. </para>
 			<orderedlist numeration="arabic">
 				<listitem>
-					<para><emphasis>First interface:</emphasis> We have already configured the first in the previous steps and this is the interface that we will use to communicate with the sensor. </para>
+					<para><emphasis role="bold">First interface:</emphasis> We have already configured the first in the previous steps and this is the interface that we will use to communicate with the sensor. </para>
 				</listitem>
 				<listitem>
-					<para><emphasis>Second interface:</emphasis>With the second network interface we are going to create a segment with a listening 
-					port to analyze the traffic that flows through the said interface.  Likewise, we need to send the desired traffic to this second interface. 
-					One option is to use a network listening device (Network TAP) which will be configured to resend traffic through the interfaces where it has not received traffic (see image). 
+					<para><emphasis role="bold">Second interface:</emphasis> With the second network interface we are going to create a segment with a listening 
+					port to analyze the traffic that flows through the said interface.</para>
+					<para>Likewise, we need to send the desired traffic to this second interface. 
+					One option is to <emphasis role="bold">use a network listening device (Network TAP)</emphasis> which will be configured to resend traffic through the interfaces 
+					where it has not received traffic (see image). 
 					A diagram is included where the configuration can be seen:</para>
 				</listitem>
 			</orderedlist>
 			
 			<mediaobject>
 				<imageobject>
-					<imagedata scalefit="1" align="center" width="450" fileref="images/ch02_img011.png"/>
+					<imagedata scalefit="1" align="center" width="450" fileref="images/ch02_img010.png"/>
 				</imageobject>
 				<caption>
 					<para>IDS (SPAN mode)</para>
@@ -212,13 +213,13 @@
 			 In our case we are going to assume that we don't have bypass support. So, you must select the option <keycap>n (new segment)</keycap> in order to configure a segment and follow the wizard:</para>
 			 <orderedlist numeration="arabic">
 				 <listitem>
-					 <para>Insert segment number (0-1) [0]: Press <keycap>ENTER </keycap> to select 0.</para>
+					 <para><literal>Insert segment number (0-1) [0]:</literal> Press ENTER to select 0.</para>
 				 </listitem>
 				 <listitem>
-					 <para>Insert segment first port [1]: Press <keycap>ENTER </keycap> to select 1.</para>
+					 <para><literal>Insert segment first port [1]:</literal> Press ENTER to select 1.</para>
 				 </listitem>
 				 <listitem>
-					 <para>Assign a second port to the segment (Y/n): Select N and press <keycap>ENTER </keycap>.</para>
+					 <para><literal>Assign a second port to the segment (Y/n)</literal>: Select N and press ENTER.</para>
 				 </listitem>
 			 </orderedlist>
 			 
@@ -260,13 +261,13 @@
 		
 		<orderedlist numeration="arabic">
 			<listitem>
-				<para>Option 1: allows us to create a host name for the IDS/IPS sensor.</para>
+				<para><emphasis>Option 1:</emphasis> allows us to create a host name for the IDS/IPS sensor.</para>
 			</listitem>
 			<listitem>
-				<para>Option 2: allows us to indicate the local time of the IDS/IPS sensor.</para>
+				<para><emphasis>Option 2:</emphasis> allows us to indicate the local time of the IDS/IPS sensor.</para>
 			</listitem>
 			<listitem>
-				<para>Option 3: we must insert the domain or IP that the Manager has in its management interface.</para>
+				<para><emphasis>Option 3:</emphasis> we must insert the domain or IP that the Manager has in its management interface.</para>
 			</listitem>
 		</orderedlist>
 		
@@ -313,13 +314,8 @@
 				<para>Sensors interface: checking sensors registration</para>
 			</caption>
         </mediaobject>
-		
-		
-		
+			
 	</section>
-	
-	
-	
 	
 	<section>
 		<title>Registering the sensor in redborder Live</title>    
@@ -388,7 +384,7 @@
         
         <mediaobject>
 			<imageobject>
-				<imagedata scalefit="1" align="center" width="450" fileref="images/ch02_img024.png"/>
+				<imagedata scalefit="1" align="center" width="350" fileref="images/ch02_img024.png"/>
             </imageobject>
 			<caption>
 				<para>Sensor UUID</para>
@@ -417,8 +413,8 @@
 			</caption>
         </mediaobject>
         
-        <para>Click on  <literal>save</literal> and wait until the sensor is configured correctly. We can then verify that the sensor is working both in
-         redborder Live and by executing the <command>rb_sysconf</command> command and selecting option 1 in the menu:</para>
+        <para>Click on  <literal>Save</literal> and wait until the sensor is configured correctly. We can then verify that the sensor is working both in
+         redborder Live and by executing the <command>rb_sysconf</command> command and selecting option <keycap>1</keycap> in the menu:</para>
          
          <mediaobject>
 			<imageobject>
@@ -434,7 +430,7 @@
 				<imagedata scalefit="1" align="center" width="450" fileref="images/ch02_img028.png"/>
             </imageobject>
 			<caption>
-				<para>Sensor registerd and claimed</para>
+				<para>Sensor registered and claimed</para>
 			</caption>
         </mediaobject>
 
