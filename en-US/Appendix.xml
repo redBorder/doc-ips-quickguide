@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+<!ENTITY % BOOK_ENTITIES SYSTEM "manual.ent">
+<!ENTITY PRODUCT "Documentation">
+<!ENTITY BOOKID "manual">
+<!ENTITY YEAR "2016">
+<!ENTITY HOLDER "Eneo Tecnología S.L. |">
+]>
+<chapter>
+	<title>redborder IPS/ IDS Rules</title>	
+	
+	<section>
+		<title>Requirements</title>
+		<para>Assuming that we have an IDS correctly registered in redborder Live or in a cluster. Furthermore, the IDS will be receiving traffic from at least one segment.</para>	
+	</section>
+	
+	<section>
+		<title>Creating Rules</title>
+		<para>In this HOWTO, we will demonstrate how to create a rule and assign it to the IDS/ IPS that we have registered. 
+		It is worth noting that when we have an IDS/ IPS installed we will not see traffic in the IPS part of the cluster:</para>
+		
+		<mediaobject>
+			<imageobject>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/Ap_img001.png"/>
+            </imageobject>
+			<caption>
+				<para>IPS Events</para>
+			</caption>
+        </mediaobject>
+        
+        <para>This is due to the fact that we have not created or applied any rules to the IDS/ IPS sensor.</para>
+        <para>In this HOWTO we are going to <emphasis role="bold">create and apply a rule which will notify us when a data flow corresponding to the PING command passes through the sensor.</emphasis>
+        The first thing we must do is verify that we have rules downloaded, activated and updated in the cluster. 
+        To do this, we go to <literal>TOOLS -> Rule Versions </literal> and ensure that at least one of the boxes is checked:</para>
+        
+       <mediaobject>
+			<imageobject>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/Ap_img002.png"/>
+            </imageobject>
+			<caption>
+				<para>Rule Versions interface</para>
+			</caption>
+        </mediaobject>
+        
+        <para>To be sure, we will go to the SENSORS tab, where we can see the IDS sensor that we have installed.
+         We then add a Global Signature policy by clicking on <literal>Options -> Global Signature Policies:</literal></para>
+         
+         <mediaobject>
+			<imageobject>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/Ap_img003.png"/>
+            </imageobject>
+			<caption>
+				<para>Options -> Global Signature Policies</para>
+			</caption>
+        </mediaobject>
+        
+        <para>Next we will click on<literal> + New Policy:</literal></para>
+        
+        <mediaobject>
+			<imageobject>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/Ap_img004.png"/>
+            </imageobject>
+			<caption>
+				<para>Creating New Policy</para>
+			</caption>
+        </mediaobject>
+        
+        <para>We will see a pop-up window where we will fill out a name, we will check the Rule Sources box and click on <literal>Create Policy:</literal></para>
+        
+        <mediaobject>
+			<imageobject>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/Ap_img005.png"/>
+            </imageobject>
+			<caption>
+				<para>New Policy details</para>
+			</caption>
+        </mediaobject>
+        
+        <para>Now we have a rule set from which to select the actions to be performed.</para>
+        
+        <mediaobject>
+			<imageobject>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/Ap_img006.png"/>
+            </imageobject>
+			<caption>
+				<para>Rules</para>
+			</caption>
+        </mediaobject>
+        
+        <para>In our case we will click on <literal>SERVICES Other Services Rules -> ICMP.</literal> We will check the ICMP box and in Action we will check the alert option.</para>
+        
+         <mediaobject>
+			<imageobject>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/Ap_img007.png"/>
+            </imageobject>
+			<caption>
+				<para>Actions over the rules</para>
+			</caption>
+        </mediaobject>
+        
+        <para>Then we will go to <literal>Options -> Apply Conf.</literal></para>
+        
+        <mediaobject>
+			<imageobject>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/Ap_img008.png"/>
+            </imageobject>
+			<caption>
+				<para>Apply changes</para>
+			</caption>
+        </mediaobject>
+        
+        <para>Then, on the screen that appears in the Signature Policies section, we will check <literal>Configuration &amp; Signature Set</literal> and click the <literal>Update</literal> button.</para>
+        
+        <mediaobject>
+			<imageobject>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/Ap_img009.png"/>
+            </imageobject>
+			<caption>
+				<para>Configuration Update</para>
+			</caption>
+        </mediaobject>
+        
+        <para>We will go to Signature Policies again, click on the Assign button and, in the pop-up window that appears, we will click OK: </para>
+        
+        <mediaobject>
+			<imageobject>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/Ap_img010.png"/>
+            </imageobject>
+			<caption>
+				<para>Assigning policy to a sensor</para>
+			</caption>
+        </mediaobject>
+        
+        <mediaobject>
+			<imageobject>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/Ap_img011.png"/>
+            </imageobject>
+        </mediaobject>
+        
+        <para>Now the rule will appear created in green and we will only have to click on <literal>Apply Conf:</literal></para>
+        
+        <mediaobject>
+			<imageobject>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/Ap_img012.png"/>
+            </imageobject>
+			<caption>
+				<para>Apply configuration</para>
+			</caption>
+        </mediaobject>
+        
+        <para>Next, if we go to the IPS tab and if the policy is matched we will start to see traffic corresponding to the applied rule. An example of the IPS traffic is shown in the next image:</para>
+        
+          <mediaobject>
+			<imageobject>
+				<imagedata scalefit="1" align="center" width="450" fileref="images/Ap_img013.png"/>
+            </imageobject>
+			<caption>
+				<para>IPS Events: Rule applied</para>
+			</caption>
+        </mediaobject>
+        
+	</section>
+	
+	
+		
+</chapter>
