@@ -1,0 +1,37 @@
+language: generic
+sudo: required
+dist: trusty
+before_install:
+  - sudo apt-get -qq update
+  - sudo apt-get install -y --no-install-recommends publican libxml2-utils
+notifications:
+  email: false
+
+matrix:
+  include:
+    - env: LANG="en-US" MAKE_TARGET_SUFFIX="us"
+
+script:
+  - xmllint --postvalid --noout ${LANG}/Chapter*.xml
+  - make pdf-${MAKE_TARGET_SUFFIX}
+  - make html-${MAKE_TARGET_SUFFIX}
+# No idea how pdf name has been generated!
+  - OUTPUT_PDF_NAME="$(cd tmp/${LANG}/pdf/; ls *.pdf)"
+  - OUTPUT_NAME="${OUTPUT_PDF_NAME%.pdf}"
+  - mv tmp/${LANG}/pdf/${OUTPUT_NAME}.pdf ${OUTPUT_NAME}.pdf;
+  - "(cd tmp/${LANG}; zip ${OUTPUT_NAME} -r html)"
+  - "(cd tmp/${LANG}; tar cvzpf ${OUTPUT_NAME}.tgz html/)"
+  - mv tmp/${LANG}/${OUTPUT_NAME}.{zip,tgz} .
+
+deploy:
+  provider: releases
+  api_key:
+    secure: RiX4EM97iXk+Mxv1LvXn/f0JTi1Ut93ZjsM0I1/5Y0UZuMRT4F1wbsvTVuaIbBht4tB9oH1D5cyyeLwdiEG8b4dj6r8UAJDyrYXKj+vyOaoj9L3TG+aMug4Ey0H+l6ilIvVnFGnSWe6DR9tMqiGVwbpRNcLAMMPqV3g5zUyFg6aN0cXu0z88eJYxrsbzA2wXZEqyQGAjrmRe3nbfjWtYYOKcDEOtaq2oc88r9yxRLjpZ5G9LQ1MeSONzVCSPaJP7pWvdA7OA8SOj988qarvxWMzp6MaXaaFGRrG8pcKO0dMtA1TscEVcqsT97prH2eYT9mcZzQFv1T2jRnz3+9akI4Bxa0aZ8z/6B+o/53Wm/6DW9ki58X0gpPM5DGG2QENQoyUFnbQDvYZ6lFT+akxVGlVhP0NvyLV2pl7qP/bmzoYbhgilcxoU+k4fVS/D896LYdTo+6J19/JTLQuNEmZ0RwbE6JcK4+wl1Kq3sovwaPHZ0UF7U/Y0qFx/2XzEgYcpbQkW/eIjQPhVodH46wfxMOYm35pnIHGvLiInmoADUYc6Ya2Bc1LD7S9IcQDtbI+kv26i4HJZByhS4hadusF9fyYrKnKs9j+VGUWFpLUENKXfqVv1DaHI7vXz+iWho4d9n5SCiG6kuHvoOsMSYtXR9IenHvvtE/Hdx2iPS5oeZl8=
+  file:
+    - ${OUTPUT_NAME}.pdf
+    - ${OUTPUT_NAME}.zip
+    - ${OUTPUT_NAME}.tgz
+
+  on:
+    repo: redBorder/doc-ips-quickguide
+    tags: True
