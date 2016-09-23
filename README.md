@@ -1,5 +1,9 @@
 # IPS Quickguide Installation
 
+[![Download IPS Quick Guide PDF](https://img.shields.io/badge/PDF--EN-IPS--QUICK--v1.1-0--red.svg)](https://github.com/redBorder/doc-ips-quickguide/releases/download/1.1-0/IPS_redborder_Live-3-Quick_installation_guide-en-US.pdf)
+[![Download IPS enterprise version](https://img.shields.io/badge/html.tgz--EN-IPS--QUICK--v1.1-0--red.svg)](https://github.com/redBorder/doc-ips-quickguide/releases/download/1.1-0/IPS_redborder_Live-3-Quick_installation_guide-en-US.tgz)
+[![Download IPS enterprise version](https://img.shields.io/badge/html.zip--EN-IPS--QUICK--v1.1-0--red.svg)](https://github.com/redBorder/doc-ips-quickguide/releases/download/1.1-0/IPS_redborder_Live-3-Quick_installation_guide-en-US.zip)
+
 [![logo](https://redborder.com/media/download/553)](https://redborder.com/trial)
 
 Este es un manual de usuario que corresponde a la última versión de la app redborder IPS, edición Enterprise.
